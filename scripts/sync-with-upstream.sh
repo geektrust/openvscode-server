@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+#usage: ./sync-with-upstream.sh upstream/release/1.99 release/1.99 "geektrist inital commit marker" true
+
 echo "Syncing openvscode-server with upstream"
 
-upstream_url="https://github.com/microsoft/vscode.git"
+upstream_url="https://github.com/gitpod-io/openvscode-server.git"
 upstream_branch=${1:-"upstream/main"}
 local_branch=${2:-"main"}
-base_commit_msg=${3:-"code web server initial commit"}
+base_commit_msg=${3:-"geektrust initial commit marker"}
 only_sync=${4:-"true"}
 
 exit_script() {
