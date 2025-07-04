@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#usage: ./sync-with-upstream.sh upstream/release/1.99 release/1.99 "geektrist inital commit marker" true
+#usage: ./sync-with-upstream.sh upstream/release/1.99 release/1.99 "geektrust inital commit marker" true
 
 echo "Syncing openvscode-server with upstream"
 
