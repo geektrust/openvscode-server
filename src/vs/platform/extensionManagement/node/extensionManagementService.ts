@@ -328,10 +328,18 @@ export class ExtensionManagementService extends AbstractExtensionManagementServi
 		}
 	}
 
+	private disableSignatureVerification() {
+		return true;
+	}
+
 	private async downloadExtension(extension: IGalleryExtension, operation: InstallOperation, verifySignature: boolean, clientTargetPlatform?: TargetPlatform): Promise<{ readonly location: URI; readonly verificationStatus: ExtensionSignatureVerificationCode | undefined }> {
 		if (verifySignature) {
 			const value = this.configurationService.getValue('extensions.verifySignature');
 			verifySignature = isBoolean(value) ? value : true;
+		}
+		if (this.disableSignatureVerification()) {
+			// Note: disable extension signature verification
+			verifySignature = false;
 		}
 		const { location, verificationStatus } = await this.extensionsDownloader.download(extension, operation, verifySignature, clientTargetPlatform);
 		const shouldRequireSignature = (await this.extensionGalleryManifestService.getExtensionGalleryManifest())?.capabilities.signing?.allRepositorySigned;
